@@ -1,2 +1,2 @@
 # Weather-Application
-Weather Application
+A weather application
