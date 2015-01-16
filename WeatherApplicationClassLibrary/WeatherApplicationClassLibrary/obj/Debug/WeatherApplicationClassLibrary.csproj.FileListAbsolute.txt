@@ -1,0 +1,5 @@
+E:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\obj\Debug\ResolveAssemblyReference.cache
+E:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\bin\Debug\WeatherApplicationClassLibrary.dll
+E:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\bin\Debug\WeatherApplicationClassLibrary.pdb
+E:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\obj\Debug\WeatherApplicationClassLibrary.dll
+E:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\obj\Debug\WeatherApplicationClassLibrary.pdb

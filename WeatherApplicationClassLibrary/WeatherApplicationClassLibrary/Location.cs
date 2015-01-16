@@ -12,7 +12,7 @@ namespace WeatherApplicationClassLibrary
         private String locationLatitude;
         private String locationLongitude;
 
-        public String LocationLongitude{ get; set}
+        public String LocationLongitude { get; set; }
         
         public Location(){
 

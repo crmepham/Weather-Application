@@ -24,3 +24,35 @@ E:\uni\System Development\Weather Application\Weather-Application\WeatherApplica
 E:\uni\System Development\Weather Application\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.Properties.Resources.resources
 E:\uni\System Development\Weather Application\Weather-Application\WeatherApplication\obj\x86\Debug\GenerateResource.read.1.tlog
 E:\uni\System Development\Weather Application\Weather-Application\WeatherApplication\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.exe
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.pdb
+E:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplication.exe
+E:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplication.pdb
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\MainWindow.baml
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\MainWindow.g.cs
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\App.g.cs
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication_MarkupCompile.cache
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.g.resources
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.Properties.Resources.resources
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\GenerateResource.write.1.tlog
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.exe
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.pdb
+F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplication.exe
+F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplication.pdb
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\MainWindow.baml
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\MainWindow.g.cs
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\App.g.cs
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication_MarkupCompile.cache
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.g.resources
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.Properties.Resources.resources
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\GenerateResource.read.1.tlog
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\Settings.baml
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\Settings.g.cs
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\Guide.baml
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\Guide.g.cs
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\About.baml
+E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\About.g.cs

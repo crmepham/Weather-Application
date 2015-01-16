@@ -6,12 +6,12 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top" Height="35" FontWeight="Bold" FontFamily="Arial">
                 <MenuItem Header="_File" Height="30" VerticalAlignment="Center" Padding="7,8,8,3">
-                    <MenuItem Header="_Settings"/>
-                    <MenuItem Header="_Close"/>
+                    <MenuItem Header="_Settings" Click="MenuItem_Click_2" />
+                    <MenuItem Header="_Close" Click="MenuItem_Click_1" />
                 </MenuItem>
                 <MenuItem Header="_Help" Padding="7,8,8,3">
-                    <MenuItem Header="_Guide"/>
-                    <MenuItem Header="_About"/>
+                    <MenuItem Header="_Guide" Click="MenuItem_Click_3" />
+                    <MenuItem Header="_About" Click="MenuItem_Click_4" />
                 </MenuItem>
                 <Menu.Background>
                     <ImageBrush ImageSource="/WeatherApplication;component/Images/menuBG.png" />
@@ -68,20 +68,57 @@
                     <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="4:41pm"></Label>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Width="580" Height="400" HorizontalAlignment="right" Background="#FFD14040" VerticalAlignment="Top" Margin="30 -10 -1 0" ZIndex="-1">
+            <StackPanel Width="580" Height="500" HorizontalAlignment="right" Background="Transparent" VerticalAlignment="Top" Margin="30 -10 -1 0" ZIndex="-1">
+                <StackPanel Width="580" Height="400" HorizontalAlignment="right" Background="#FFD14040" VerticalAlignment="Top" ZIndex="-1" Name="Map">
                     <Border Width="575" Height="400" HorizontalAlignment="right" Background="Transparent" BorderBrush="Black" BorderThickness="1" Margin="0 0 -0 0">
                         <Border.Effect>
                             <DropShadowEffect ShadowDepth="1" BlurRadius="10"/>
                         </Border.Effect>
                     </Border>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Background="Transparent" VerticalAlignment="Bottom" ZIndex="-1" Orientation="Horizontal">
+                    <StackPanel Height="100" Width="90" Margin="0 10">
+                        <Label  FontFamily="Arial" FontSize="12" FontWeight="Regular" Content="Tuesday" HorizontalContentAlignment="Center"/>
+                        <Label  FontFamily="Arial" FontSize="10" FontWeight="Regular" Content="Mostly Cloudy" HorizontalContentAlignment="Center"/>
+                        <Label  FontFamily="Arial" FontSize="13" FontWeight="Bold" Content="75&#176;" HorizontalContentAlignment="Center"/>
+                    </StackPanel>
 
-            </StackPanel>
-            <StackPanel Width="500" Name="stackPanel111" Background="AliceBlue" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
-                <StackPanel Height="100" Background="AliceBlue">
-                    <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Tuesday" />
-                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="75&#176;" />
+                    <StackPanel Height="100" Width="90" Margin="0 10">
+                        <Label  FontFamily="Arial" FontSize="12" FontWeight="Regular" Content="Tuesday" HorizontalContentAlignment="Center"/>
+                        <Label  FontFamily="Arial" FontSize="10" FontWeight="Regular" Content="Mostly Cloudy" HorizontalContentAlignment="Center"/>
+                        <Label  FontFamily="Arial" FontSize="13" FontWeight="Bold" Content="75&#176;" HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Height="100" Width="90" Margin="0 10">
+                        <Label  FontFamily="Arial" FontSize="12" FontWeight="Regular" Content="Tuesday" HorizontalContentAlignment="Center"/>
+                        <Label  FontFamily="Arial" FontSize="10" FontWeight="Regular" Content="Mostly Cloudy" HorizontalContentAlignment="Center"/>
+                        <Label  FontFamily="Arial" FontSize="13" FontWeight="Bold" Content="75&#176;" HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Height="100" Width="90" Margin="0 10">
+                        <Label  FontFamily="Arial" FontSize="12" FontWeight="Regular" Content="Tuesday" HorizontalContentAlignment="Center"/>
+                        <Label  FontFamily="Arial" FontSize="10" FontWeight="Regular" Content="Mostly Cloudy" HorizontalContentAlignment="Center"/>
+                        <Label  FontFamily="Arial" FontSize="13" FontWeight="Bold" Content="75&#176;" HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Height="100" Width="90" Margin="0 10">
+                        <Label  FontFamily="Arial" FontSize="12" FontWeight="Regular" Content="Tuesday" HorizontalContentAlignment="Center"/>
+                        <Label  FontFamily="Arial" FontSize="10" FontWeight="Regular" Content="Mostly Cloudy" HorizontalContentAlignment="Center"/>
+                        <Label  FontFamily="Arial" FontSize="13" FontWeight="Bold" Content="75&#176;" HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Height="100" Width="90" Margin="0 10">
+                        <Label  FontFamily="Arial" FontSize="12" FontWeight="Regular" Content="Tuesday" HorizontalContentAlignment="Center"/>
+                        <Label  FontFamily="Arial" FontSize="10" FontWeight="Regular" Content="Mostly Cloudy" HorizontalContentAlignment="Center"/>
+                        <Label  FontFamily="Arial" FontSize="13" FontWeight="Bold" Content="75&#176;" HorizontalContentAlignment="Center"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
+
+            
+
+
+            
 
         </DockPanel>
     </Grid>

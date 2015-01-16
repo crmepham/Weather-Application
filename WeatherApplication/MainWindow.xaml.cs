@@ -33,5 +33,29 @@ namespace WeatherApplication
         {
 
         }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            // close program
+            Environment.Exit(0);
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            Settings settingsWindow = new Settings();
+            settingsWindow.Show();
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            Guide guideWindow = new Guide();
+            guideWindow.Show();
+        }
+
+        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        {
+            About aboutWindow = new About();
+            aboutWindow.Show();
+        }
     }
 }

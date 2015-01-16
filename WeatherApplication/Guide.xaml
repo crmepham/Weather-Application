@@ -1,0 +1,15 @@
+﻿<Window x:Class="WeatherApplication.Guide"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Weather Application Guide" Height="350" Width="300" Name="GuideWindow" ResizeMode="NoResize">
+    <Grid Background="#FFE7E7E7">
+        <StackPanel Height="311" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="278">
+            <TextBlock Margin="5" Height="305" Name="textBlock1" Text="Welcome to to the Weather App. This app. is designed to show yoall the information you need to know about the weather today in the location of you're choice. It will also give you basic weather information for the next 6 days.
+
+You can choose a location two way's.&#10;&#10;
+1) Enter in either or all of the location search criteria and click the 'Search' button.&#10;&#10;
+2) Search for the location using the map. When you've found the location, the app. will search for that location and retrieve the weather information for that region.&#10;&#10;
+You can set you're preferred temperature and default location in the settings window ( File > Settings )." TextWrapping="Wrap" />
+        </StackPanel>
+    </Grid>
+</Window>
