@@ -3,3 +3,8 @@ E:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\Wea
 E:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\bin\Debug\WeatherApplicationClassLibrary.pdb
 E:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\obj\Debug\WeatherApplicationClassLibrary.dll
 E:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\obj\Debug\WeatherApplicationClassLibrary.pdb
+F:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\bin\Debug\WeatherApplicationClassLibrary.dll
+F:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\bin\Debug\WeatherApplicationClassLibrary.pdb
+F:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\obj\Debug\ResolveAssemblyReference.cache
+F:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\obj\Debug\WeatherApplicationClassLibrary.dll
+F:\uni\System Development\Weather-Application\WeatherApplicationClassLibrary\WeatherApplicationClassLibrary\obj\Debug\WeatherApplicationClassLibrary.pdb

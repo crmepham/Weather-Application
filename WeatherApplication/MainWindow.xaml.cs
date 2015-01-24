@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -11,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeatherApplicationClassLibrary;
 
 namespace WeatherApplication
 {
@@ -24,8 +26,37 @@ namespace WeatherApplication
             InitializeComponent();
         }
 
+
+        List<String> searchCriteria = new List<String>();
+        
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // load settings
+            WeatherApplicationClassLibrary.Settings settings = new WeatherApplicationClassLibrary.Settings();
+            
+            // read settings from file
+            settings.readSettingsFile();
+
+            // load saved postcode
+            searchCriteria.Add(settings.Postcode);
+
+            // get woeid using saved postcode
+            settings.updateWOEID(searchCriteria);
+
+            // load todays info
+            Day day = new Day(settings.WOEID);
+            day.updateDay(settings.WOEID);
+
+
+            weatherTodayDate.Content = day.Date;
+            // --- test
+            temperature.Content = day.Name;//settings.WOEID;
+
+            
+
+
+            
 
         }
 

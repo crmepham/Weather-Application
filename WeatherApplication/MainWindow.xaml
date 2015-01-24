@@ -33,15 +33,18 @@
                 </StackPanel>
                 <Button Content="Search" Height="23" Name="searchButton" Width="75" HorizontalAlignment="Right" Margin="0 5"/>
                 <Separator Height="5" Name="separator1" Width="245" HorizontalAlignment="Right"/>
-                <Label Content="Weather Today" FontFamily="Arial" FontSize="14" Height="28" Name="weatherTodayLabel" IsEnabled="False" Margin="0 5"/>
-                <Label Content="Bury St Edmunds" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="28" Name="label1" />
                 <StackPanel Orientation="Horizontal">
-                    <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Temperature:"></Label>
-                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="75&#176;"></Label>
+                    <Label Content="Weather Today" FontFamily="Arial" FontSize="14" Height="28" Name="weatherTodayLabel" IsEnabled="False" Margin="0 5" Width="120" />
+                    <Label Content="o" FontFamily="Arial" FontSize="14" Height="28" Name="weatherTodayDate" IsEnabled="False" Margin="0 5" Width="120" />
+                </StackPanel>
+                <Label Content="Bury St Edmunds (256798)" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="28" Name="label1" />
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Temperature:" Name="temperatureTitle"></Label>
+                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Name="temperature"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Condition:"></Label>
-                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Mostly Cloudy"></Label>
+                    <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Condition:" Name="conditionTitle"></Label>
+                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Mostly Cloudy" Name="condition"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Hi:"></Label>

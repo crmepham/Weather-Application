@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WeatherApplicationClassLibrary;
 
 namespace WeatherApplication
 {
@@ -21,6 +22,15 @@ namespace WeatherApplication
         public Settings()
         {
             InitializeComponent();
+        }
+
+        private void SettingsWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            // load settings
+            WeatherApplicationClassLibrary.Settings settings = new WeatherApplicationClassLibrary.Settings();
+            settings.readSettingsFile();
+
+            postCode.Text = settings.Postcode;
         }
     }
 }
