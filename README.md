@@ -3,6 +3,8 @@ This is a project I was required to do in the second year of my BSc Applied Comp
 <h2>Technologies used</h2>
 1. C#
 2. WPF / XAML
+3. Yahoo Weather API
+4. GMap API
 
 <h2>Project preview</h2>
 --picture
