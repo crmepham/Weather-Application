@@ -44,14 +44,37 @@ namespace WeatherApplication
             // get woeid using saved postcode
             settings.updateWOEID(searchCriteria);
 
-            // load todays info
-            Day day = new Day(settings.WOEID);
-            day.updateDay(settings.WOEID);
+            
 
+            try
+            {
+                // load todays info
+                Day day = new Day();
+                day.updateDay(settings.WOEID);
 
-            weatherTodayDate.Content = day.Date;
-            // --- test
-            temperature.Content = day.Name;//settings.WOEID;
+                // get weather info
+                Weather weather = new Weather();
+                weather.updateWeather(settings.WOEID);
+
+                // load location info
+                Location loc = new Location();
+                loc.updateLocation(settings.WOEID);
+                loc.Postcode = settings.Postcode;
+
+                //townLabel.Content = loc.Town;
+                lastBuildDate.Content = day.LastBuildDate;
+
+                // load weather info
+                temperatureLabel.Content = loc.Latitude;
+            }
+            catch (Exception ex)
+            {
+                Guide guideWindow = new Guide();
+                guideWindow.Show();
+                guideWindow.textBlock1.Text = ex.Message;
+
+            }
+            
 
             
 

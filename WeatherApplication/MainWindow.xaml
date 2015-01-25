@@ -21,54 +21,57 @@
                 <Label Content="Search location" FontFamily="Arial" FontSize="14" Height="28" Name="searchLocationLabel" IsEnabled="False" />
                 <StackPanel Orientation="Horizontal">
                     <Label Width="100" FontFamily="Arial" FontSize="14" Margin="3">Town</Label>
-                    <TextBox Margin="3" Width="120"></TextBox>
+                    <TextBox Margin="3" Width="120" Name="townTextbox"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Width="100" FontFamily="Arial" FontSize="14" Margin="3">County</Label>
-                    <TextBox Margin="3" Width="120"></TextBox>
+                    <TextBox Margin="3" Width="120" Name="countyTextbox"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Width="100" FontFamily="Arial" FontSize="14" Margin="3">Post Code</Label>
-                    <TextBox Margin="3" Width="120"></TextBox>
+                    <TextBox Margin="3" Width="120" Name="postcodeTextbox"></TextBox>
                 </StackPanel>
                 <Button Content="Search" Height="23" Name="searchButton" Width="75" HorizontalAlignment="Right" Margin="0 5"/>
                 <Separator Height="5" Name="separator1" Width="245" HorizontalAlignment="Right"/>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Weather Today" FontFamily="Arial" FontSize="14" Height="28" Name="weatherTodayLabel" IsEnabled="False" Margin="0 5" Width="120" />
-                    <Label Content="o" FontFamily="Arial" FontSize="14" Height="28" Name="weatherTodayDate" IsEnabled="False" Margin="0 5" Width="120" />
+                    <Label Content="Weather Today" FontFamily="Arial" FontSize="14" Height="28" Name="weatherTodayLabel" IsEnabled="False" Margin="0 5" Width="105" />
                 </StackPanel>
-                <Label Content="Bury St Edmunds (256798)" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="28" Name="label1" />
+                <Label Content="Getting town..." FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="28" Name="townLabel" />
                 <StackPanel Orientation="Horizontal">
                     <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Temperature:" Name="temperatureTitle"></Label>
-                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Name="temperature"></Label>
+                    <Label Width="130" FontFamily="Arial" FontSize="9" FontWeight="Bold" Name="temperatureLabel" Content="getting temp..."></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Condition:" Name="conditionTitle"></Label>
-                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Mostly Cloudy" Name="condition"></Label>
+                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="getting condition..." Name="conditionLabel"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Hi:"></Label>
-                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="75&#176;"></Label>
+                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="getting hi temp..." Name="tempHighLabel"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Low:"></Label>
-                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="75&#176;"></Label>
+                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="getting low temp..." Name="tempLowLabel"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Wind Speed:"></Label>
-                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="12mph"></Label>
+                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="getting wind speed.." Name="windSpeedLabel"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Humidity:"></Label>
-                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="75&#176;"></Label>
+                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="getting humidity..." Name="humidityLabel"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Sunrise:"></Label>
-                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="11:40am"></Label>
+                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="getting sunrise..." Name="sunriseLabel"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Width="110" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="Sunset:"></Label>
-                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="4:41pm"></Label>
+                    <Label Width="130" FontFamily="Arial" FontSize="14" FontWeight="Bold" Content="getting sunset..." Name="sunsetLabel"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Width="256">
+                    <Label Content="Last build: " FontFamily="Arial" FontSize="11" Height="28" Name="lastBuildLabel" IsEnabled="False" Margin="0 5" Width="65" />
+                    <Label Height="28" FontFamily="Arial" FontSize="11"  Name="lastBuildDate" Content="Getting last buid date..." Foreground="#FF6D6D6D" Margin="-10 10" Width="201" />
                 </StackPanel>
             </StackPanel>
             <StackPanel Width="580" Height="500" HorizontalAlignment="right" Background="Transparent" VerticalAlignment="Top" Margin="30 -10 -1 0" ZIndex="-1">

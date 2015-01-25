@@ -11,6 +11,13 @@ namespace WeatherApplicationClassLibrary
     {
         private String name;
         private String date;
+        private String lastBuildDate;
+        
+
+        public String LastBuildDate
+        {
+            get { return lastBuildDate; }
+        }
 
         public String Name
         {
@@ -27,6 +34,11 @@ namespace WeatherApplicationClassLibrary
             updateDay(woeid);
         }
 
+        public Day()
+        {
+            
+        }
+
         public void updateDay(String woeid)
         {
            String query = String.Format("http://weather.yahooapis.com/forecastrss?w={0}", woeid);
@@ -39,8 +51,14 @@ namespace WeatherApplicationClassLibrary
             man.AddNamespace("lastBuildDate", "http://xml.weather.yahoo.com/ns/rss/1.0");
 
             name = channel.SelectSingleNode("lastBuildDate", man).InnerText.Substring(0,3);
-            date = "(" + channel.SelectSingleNode("lastBuildDate", man).InnerText.Substring(5, 11) + ")";
+            date = channel.SelectSingleNode("lastBuildDate", man).InnerText.Substring(5, 11);
+            lastBuildDate = channel.SelectSingleNode("lastBuildDate", man).InnerText;
+        }
 
+        public String todaysDate()
+        {
+            String result = name + " " + date;
+            return result;
         }
     }
 }
