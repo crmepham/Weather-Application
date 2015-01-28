@@ -28,61 +28,62 @@ namespace WeatherApplication
 
 
         List<String> searchCriteria = new List<String>();
+        Day day;
+        Location loc;
         
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // load settings
-            WeatherApplicationClassLibrary.Settings settings = new WeatherApplicationClassLibrary.Settings();
-            
-            // read settings from file
-            settings.readSettingsFile();
-
-            // load saved postcode
-            searchCriteria.Add(settings.Postcode);
-
-            // get woeid using saved postcode
-            settings.updateWOEID(searchCriteria);
-
-            
-
+            // attempt to instantiate methods and load data from .txt and .xml files
             try
             {
-                // load todays info
-                Day day = new Day();
+                // load settings
+                WeatherApplicationClassLibrary.Settings settings = new WeatherApplicationClassLibrary.Settings();
+
+                // read settings from file
+                settings.readSettingsFile();
+
+                // load saved postcode
+                searchCriteria.Add(settings.Postcode);
+
+                // get woeid using saved postcode
+                settings.updateWOEID(searchCriteria);
+
+                // load todays info from saved postcode
+                day = new Day();
                 day.updateDay(settings.WOEID);
 
-                // get weather info
-                Weather weather = new Weather();
-                weather.updateWeather(settings.WOEID);
-
-                // load location info
-                Location loc = new Location();
+                // load location info from settings
+                loc = new Location();
                 loc.updateLocation(settings.WOEID);
                 loc.Postcode = settings.Postcode;
 
-                //townLabel.Content = loc.Town;
-                lastBuildDate.Content = day.LastBuildDate;
+                dayInfo.DataContext = day.Weather;
+                lastBuildDateLabel.DataContext = day;
+                townLabel.DataContext = loc;
+                Forecast1.DataContext = day.Weather.ForecastList[0];
+                Forecast2.DataContext = day.Weather.ForecastList[1];
+                Forecast3.DataContext = day.Weather.ForecastList[2];
+                Forecast4.DataContext = day.Weather.ForecastList[3];
+                Forecast5.DataContext = day.Weather.ForecastList[4];
 
-                // load weather info
-                temperatureLabel.Content = loc.Latitude;
+                // assign values to user interface labels
+                
             }
+
             catch (Exception ex)
             {
-                Guide guideWindow = new Guide();
-                guideWindow.Show();
-                guideWindow.textBlock1.Text = ex.Message;
+                // display any errors in the error window
+                Error errorWindow = new Error();
+                errorWindow.Show();
+                errorWindow.errorMessage.Text = ex.Message + "\n" + ex.StackTrace;
 
             }
-            
 
-            
+           
 
-
-            
 
         }
-
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 
@@ -110,6 +111,11 @@ namespace WeatherApplication
         {
             About aboutWindow = new About();
             aboutWindow.Show();
+        }
+
+        private void searchButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

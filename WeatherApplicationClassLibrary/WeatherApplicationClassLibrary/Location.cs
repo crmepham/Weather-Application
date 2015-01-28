@@ -4,17 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
+using System.ComponentModel;
 
 namespace WeatherApplicationClassLibrary
 {
-    public class Location
+    public class Location : INotifyPropertyChanged
     {
+
+        
         private String town;
 
         public String Town
         {
             get { return town; }
+            set 
+            {
+                town = value;
+                OnPropertyChanged("Town");
+            }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string Property)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(Town));
+        }
+
+
         private String county;
 
         public String County
@@ -41,7 +59,10 @@ namespace WeatherApplicationClassLibrary
             get { return longitude; }
         }
 
-
+        public Location()
+        {
+            town = "test";
+        }
         public void updateLocation(String woeid)
         {
             String query = String.Format("http://weather.yahooapis.com/forecastrss?w={0}", woeid);

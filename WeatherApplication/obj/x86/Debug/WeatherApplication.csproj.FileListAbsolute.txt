@@ -47,8 +47,6 @@ E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\W
 E:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.pdb
 F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplication.exe
 F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplication.pdb
-F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplicationClassLibrary.dll
-F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplicationClassLibrary.pdb
 F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\ResolveAssemblyReference.cache
 F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\About.baml
 F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\Guide.baml
@@ -66,3 +64,7 @@ F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\G
 F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\GenerateResource.write.1.tlog
 F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.exe
 F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.pdb
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\Error.baml
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\Error.g.cs
+F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplicationClassLibrary.dll
+F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplicationClassLibrary.pdb
