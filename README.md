@@ -2,7 +2,7 @@
 This is a project I was required to do in the second year of my BSc Applied Computing degree. It is a weather application that displays weather information to users and includes an API for other developers to use the features included.
 <h2>Functionality<h2>
 <h3>Settings</h3>
-1. Set your desired temperature (Celcius/Fahrenheit)
+1. Set your desired temperature (Celcius/Fahrenheit)<br>
 2. Set your default location by providing the Postal/Zip code
 
 <h3>Text search</h3>
