@@ -6,24 +6,31 @@ using System.ComponentModel;
 
 namespace WeatherApplicationClassLibrary
 {
+    /// <summary>
+    /// <para>Used as a data store for a single days weather forecast data</para>
+    /// </summary>
     public class Forecast : INotifyPropertyChanged
     {
+        #region class variables
         private String day;
+        private String date;
+        private String hiLow;
+        private String condition;
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
+        #region class properties
         public String Day
         {
             get { return day; }
             set { day = value; OnPropertyChanged("Day"); }
         }
-        private String date;
-
+        
         public String Date
         {
             get { return date; }
             set { date = value; OnPropertyChanged("Date"); }
         }
-
-        private String hiLow;
 
         public String HiLow
         {
@@ -31,16 +38,14 @@ namespace WeatherApplicationClassLibrary
             set { hiLow = value; OnPropertyChanged("HiLow"); }
         }
 
-        private String condition;
-
         public String ForecastCondition
         {
             get { return condition; }
             set { condition = value; OnPropertyChanged("ForecastCondition"); }
         }
+        #endregion
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        // notify interface of changes to property values
         private void OnPropertyChanged(string Property)
         {
             if (PropertyChanged != null)

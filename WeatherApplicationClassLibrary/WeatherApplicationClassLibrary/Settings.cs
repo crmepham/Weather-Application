@@ -14,13 +14,16 @@ namespace WeatherApplicationClassLibrary
     /// </summary>
     public class Settings : INotifyPropertyChanged
     {
-        // class variables
+        #region class variables
         private String line;
         private String file;
         private String[] settings;
         private String woeid;
         private String devKey;
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
+        #region class properties
         public String WOEID 
         {
             get { return woeid; }
@@ -41,6 +44,7 @@ namespace WeatherApplicationClassLibrary
             get { return settings[1]; }
             set { settings[1] = value; }
         }
+        #endregion
 
         public Settings()
         {
@@ -48,21 +52,27 @@ namespace WeatherApplicationClassLibrary
             devKey = "dj0yJmk9TmFteGt6WDFTWFBkJmQ9WVdrOVpIaG1iVGhrTTJNbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1kZA";
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        // notify interface of changes to property values
         private void OnPropertyChanged(string Property)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(Postcode));
         }
 
+        /// <summary>
+        /// Get the woeid of the location based on the search terms in the search criteria list
+        /// </summary>
+        /// <param name="searchCriteria">Provides a list of search terms.</param>
         public void updateWOEID(List<String> searchCriteria)
         {
+            // build the uri query based on the search terms in list
             String query = buildWOEIDQuery(searchCriteria);
 
+            // Instantiate a new XML document retrieved from the uri
             XmlDocument woeidData = new XmlDocument();
             woeidData.Load(query);
 
+            // attempt to get the woeid from the XML document
             try
             {
                 XmlNodeList node = woeidData.GetElementsByTagName("woeid");
@@ -71,24 +81,22 @@ namespace WeatherApplicationClassLibrary
             }
             catch (Exception e)
             {
+                // if no woeid is present assing an empty string to woeid
                 woeid = "";
                 Console.Write(e.Message);
             }
+           
+
         }
 
+        /// <summary>
+        /// dynamically builds a uri query using a list of search terms
+        /// </summary>
+        /// <param name="searchCriteria">Provides a list of search terms</param>
+        /// <returns>A full uri query to retrieve a woeid</returns>
         private String buildWOEIDQuery(List<String> searchCriteria)
         {
             String query = "http://where.yahooapis.com/v1/places.q('";
-            //for (int i = 0; i < searchCriteria.Count; i++)
-            //{
-            //    query += (String)searchCriteria[i] + ",";
-            //}
-
-            //query = query.TrimEnd(',');
-            //query += "')?appid=" + devKey;
-
-
-            // refactored
             query += string.Join(",", searchCriteria);
             query += "')?appid=" + devKey;
 
@@ -96,13 +104,30 @@ namespace WeatherApplicationClassLibrary
         }
 
         /// <summary>
+        /// Used to set field value in cases where this data could not be retrieved from the XML document
+        /// </summary>
+        /// <param name="arg">XML document node.</param>
+        /// <returns>Value of XML node or an empty string</returns>
+        private String checkIfNull(String arg)
+        {
+            String result = "";
+
+            if (arg == null)
+            {
+                return result;
+            }
+            else
+            {
+                return arg;
+            }
+        }
+
+        /// <summary>
         /// This method is used to retrieve the settings data from the settings.txt file.
         /// </summary>
         /// <param name="sr">StreamReader is used to read in the settings.txt file and store the data the line variable.</param>
-        /// <returns></returns>
         public void readSettingsFile()
         {
-
             try
             {
                 using(StreamReader sReader = new StreamReader(file))
@@ -118,6 +143,7 @@ namespace WeatherApplicationClassLibrary
 
                     }
 
+                    // if there is no existing postcode, provide one
                     if(settings[0].Equals(""))
                     {
                         settings[0] = "ip333rl";
@@ -138,11 +164,9 @@ namespace WeatherApplicationClassLibrary
             {
                 using(StreamWriter sWriter = new StreamWriter(file))
                 {
+                    // create a comma separated string using the settings fields
                     line = "";
-
                     line += string.Join(",", settings);
-
-
 
                     // write the string of settings to the settings.txt file
                     sWriter.WriteLine(line);

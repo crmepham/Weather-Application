@@ -21,17 +21,17 @@ namespace WeatherApplication
     /// </summary>
     public partial class MainWindow : Window
     {
-        // define class variables
+        #region class variables
         List<String> searchCriteria;
         Day day;
         Location loc;
         WeatherApplicationClassLibrary.Settings set;
 
+        #endregion
+
         public MainWindow()
         {
             InitializeComponent();
-            
-
 
             // instantiate class variables
             searchCriteria = new List<String>();
@@ -86,6 +86,7 @@ namespace WeatherApplication
             }
         }
 
+        #region The various menu options
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             // close program
@@ -109,43 +110,49 @@ namespace WeatherApplication
             About aboutWindow = new About();
             aboutWindow.Show();
         }
+        #endregion
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
+            // add the search terms to a list
             searchCriteria.Clear();
             searchCriteria.Add(townSearchTextbox.Text);
             searchCriteria.Add(countySearchTextbox.Text);
             searchCriteria.Add(postcodeSearchTextbox.Text);
 
-            if (isValidSearchCriteria(searchCriteria))
-            {
-                formatSearchCriteria(searchCriteria);
-                set.updateWOEID(searchCriteria);
-                if (set.WOEID.Length > 0)
-                {
-                    // update location
-                    loc.updateLocation(set.WOEID);
-
-                    // update day
-                    day.updateDay(set.WOEID);
-
-                    // update map location
-                    Microsoft.Maps.MapControl.WPF.Location l = new Microsoft.Maps.MapControl.WPF.Location(Convert.ToDouble(loc.Latitude), Convert.ToDouble(loc.Longitude));
-                    Map.SetView(l, 11);
-
-                }
-                else
-                {
-                    displayError("Error: Could not retrieve WOEID, please try again.");
-                }
-            }
-            else
+            // check if that there is at least one search term 
+            if (!isValidSearchCriteria())
             {
                 displayError("Error: Please provide one or more search criteria.");
+                return;
             }
-            
+
+            // get new woeid based on the new search terms
+            set.updateWOEID(searchCriteria);
+
+            // check if a woeid was found
+            if (set.WOEID.Length <= 0)
+            {
+                displayError("Error: Could not retrieve WOEID, please try again.");
+                return;
+            }
+
+            // update location
+            loc.updateLocation(set.WOEID);
+
+            // update day
+            day.updateDay(set.WOEID);
+
+            // update map location
+            Microsoft.Maps.MapControl.WPF.Location l = new Microsoft.Maps.MapControl.WPF.Location(Convert.ToDouble(loc.Latitude), Convert.ToDouble(loc.Longitude));
+            Map.SetView(l, 11);
+
         }
 
+        /// <summary>
+        /// <para>Opens a separate window to display the error message provided to it.</para>
+        /// </summary>
+        /// <param name="errorMessage">This is the String error message to display in the new error window.</param>
         private void displayError(string errorMessage)
         {
             // display any errors in the error window
@@ -154,26 +161,13 @@ namespace WeatherApplication
             errorWindow.errorMessage.Text = errorMessage;
         }
 
-        private List<String> formatSearchCriteria(List<String> searchCriteria)
-        {
-            List<String> result = new List<string>();
-
-            for (int i = 0; i < searchCriteria.Count; i++)
-            {
-                String searchTerm = searchCriteria.ElementAt(i);
-                searchTerm = searchTerm.Replace(" ", "");
-                searchTerm = searchTerm.Trim();
-
-                result.Add(searchCriteria.ElementAt(i));
-            }
-
-            return result;
-        }
-
-        private Boolean isValidSearchCriteria(List<String> searchCriteria)
+        /// <summary>
+        /// <para>Check to make sure the list of search terms contains at least one term to search by.</para>
+        /// </summary>
+        /// <returns>Returns true if at least one search term exists in the search terms list.</returns>
+        private Boolean isValidSearchCriteria()
         {
             Boolean isValid = false;
-
 
             for (int i = 0; i < searchCriteria.Count; i++ )
             {
@@ -192,6 +186,7 @@ namespace WeatherApplication
 
         private void slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            // map the Map zoom level to the slider value
             Map.ZoomLevel = e.NewValue;
         }
 
@@ -205,7 +200,6 @@ namespace WeatherApplication
             searchCriteria.Add(Map.Center.Longitude.ToString());
 
             // get new woeid
-            formatSearchCriteria(searchCriteria);
             set.updateWOEID(searchCriteria);
 
             // update location
@@ -218,11 +212,13 @@ namespace WeatherApplication
 
         private void Map_MouseWheel(object sender, MouseWheelEventArgs e)
         {
+            // map the slider to the current map zoom level
             slider1.Value = Map.ZoomLevel;
         }
 
         private void Map_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            // map the slider to the current map zoom level
             slider1.Value = Map.ZoomLevel;
         }
     }
