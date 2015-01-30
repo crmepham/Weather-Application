@@ -19,6 +19,7 @@ Scroll around the map and zoom in and out as necessary to find the location that
 
 <h2>Project preview</h2>
 <a href="http://imgur.com/M2G2Hc9"><img src="http://i.imgur.com/M2G2Hc9.png" title="source: imgur.com" /></a>
+<iframe src="//instagram.com/p/yfC3G5GcTS/embed" width="640" height="640" frameborder="0" scrolling="no" />
 
 <h2>Future Improvements</h2>
 1. Re-design the text search to use only one single text field that can contain any and all search terms necessary.
