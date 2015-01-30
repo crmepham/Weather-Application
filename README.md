@@ -6,7 +6,7 @@ This is a project I was required to do in the second year of my BSc Applied Comp
 1. Set your desired temperature (Celcius/Fahrenheit).
 2. Set your default location by providing the Postal/Zip code.
 
-<h3>Text search<h3>
+<h3>Text search</h3>
 Seach for a location using any or all of the search criteria available. If it finds the location it will provide the weather information for that location as well as center the map at this new location.
 
 <h3>Map search</h3>
