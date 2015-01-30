@@ -4,7 +4,7 @@ This is a project I was required to do in the second year of my BSc Applied Comp
 1. C#
 2. WPF / XAML
 3. Yahoo Weather API
-4. GMap API
+4. Bing Map Control API
 
 <h2>Project preview</h2>
---picture
+<a href="http://imgur.com/M2G2Hc9"><img src="http://i.imgur.com/M2G2Hc9.png" title="source: imgur.com" /></a>
