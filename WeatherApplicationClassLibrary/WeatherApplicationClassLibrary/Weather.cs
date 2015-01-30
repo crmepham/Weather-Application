@@ -4,64 +4,65 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.ComponentModel;
 
 namespace WeatherApplicationClassLibrary
 {
-    public class Weather
+    public class Weather : INotifyPropertyChanged
     {
         private String temperature;
         public String Temperature
         {
             get { return temperature; }
-            set { temperature = value; }
+            set { temperature = value; OnPropertyChanged("Temperature"); }
         }
         private String condition;
         public String Condition
         {
             get { return condition; }
-            set { condition = value; }
+            set { condition = value; OnPropertyChanged("Condition"); }
         }
         private String windSpeed;
 
         public String WindSpeed
         {
             get { return windSpeed; }
-            set { windSpeed = value; }
+            set { windSpeed = value; OnPropertyChanged("WindSpeed"); }
         }
         private String humidity;
 
         public String Humidity
         {
             get { return humidity; }
-            set { humidity = value; }
+            set { humidity = value; OnPropertyChanged("Humidity"); }
         }
         private String sunrise;
 
         public String Sunrise
         {
             get { return sunrise; }
-            set { sunrise = value; }
+            set { sunrise = value; OnPropertyChanged("Sunrise"); }
         }
         private String sunset;
 
         public String Sunset
         {
             get { return sunset; }
-            set { sunset = value; }
+            set { sunset = value; OnPropertyChanged("Sunset"); }
         }
         private String windChill;
 
         public String WindChill
         {
             get { return windChill; }
-            set { windChill = value; }
+            set { windChill = value; OnPropertyChanged("WindChill"); }
         }
         private String windDirection;
 
         public String WindDirection
         {
             get { return windDirection; }
-            set { windDirection = value; }
+            set { windDirection = value; OnPropertyChanged("WindDirection"); }
         }
 
         private List<Forecast> forecastList = new List<Forecast>();
@@ -69,23 +70,28 @@ namespace WeatherApplicationClassLibrary
         public List<Forecast> ForecastList
         {
             get { return forecastList; }
-            set { forecastList = value; }
+            set { forecastList = value; OnPropertyChanged("ForecastList"); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string Property)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(Property));
         }
 
         public Weather()
         {
-
-        }
-
-        public Forecast getForecastInList(int id)
-        {
-            Forecast forecast = ForecastList.ElementAt(id);
-            return forecast;
+            for (int i = 0; i < 5; i++)
+            {
+                Forecast forecast = new Forecast();
+                ForecastList.Add(forecast);
+            }
         }
 
         public void updateForecastList(String woeid)
         {
-            
             String query = String.Format("http://weather.yahooapis.com/forecastrss?w={0}", woeid);
 
             XmlDocument weatherData = new XmlDocument();
@@ -99,15 +105,41 @@ namespace WeatherApplicationClassLibrary
             int i = 0;
             foreach(XmlNode forecastNode in nodeList)
             {
-                
-                Forecast forecast = new Forecast();
-                forecast.Day = (i == 0) ? "Today" : forecastNode.Attributes["day"].Value;
-                forecast.Date = forecastNode.Attributes["date"].Value;
-                forecast.HiLow = "Low: " + forecastNode.Attributes["low"].Value + "\u00b0 / Hi: " + forecastNode.Attributes["high"].Value + "\u00b0";
-                forecast.ForecastCondition = forecastNode.Attributes["text"].Value;
-                this.forecastList.Add(forecast);
+
+                Settings settings = new Settings();
+                settings.readSettingsFile();
+                String tempChoice = settings.TempChoice;
+
+                ForecastList.ElementAt(i).Day = (i == 0) ? "Today" : forecastNode.Attributes["day"].Value;
+                ForecastList.ElementAt(i).Date = forecastNode.Attributes["date"].Value;
+                ForecastList.ElementAt(i).HiLow = "Low: " + convertTemperature(tempChoice, forecastNode.Attributes["low"].Value) + "\u00b0 / Hi: " + convertTemperature(tempChoice, forecastNode.Attributes["high"].Value) + "\u00b0";
+                ForecastList.ElementAt(i).ForecastCondition = forecastNode.Attributes["text"].Value;
                 i++;
             }
+        }
+
+        private String convertTemperature(String tempChoice, String temp)
+        {
+            String resultString = null;
+            if (tempChoice.Equals("c"))
+            {
+                // convert fahrenheit temperature to celcius
+                int temperature = Convert.ToInt32(temp);
+
+                // conversion formula
+                int result = (temperature - 32) * 5 / 9;
+
+                // return converted temperature as a string
+                resultString = result.ToString();
+
+            }
+            else
+            {
+                // no conversion required
+                resultString = temp;
+            }
+
+            return resultString;
         }
     }
 }

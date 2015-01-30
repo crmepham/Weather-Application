@@ -19,18 +19,64 @@ namespace WeatherApplication
     /// </summary>
     public partial class Settings : Window
     {
-        public Settings()
+
+        private Location loc;
+        private WeatherApplicationClassLibrary.Settings settings;
+        private Day day;
+
+        public Settings(Location locIn, WeatherApplicationClassLibrary.Settings settingsIn, Day dayIn)
         {
             InitializeComponent();
+
+            loc = locIn;
+            settings = settingsIn;
+            day = dayIn;
         }
 
         private void SettingsWindow_Loaded(object sender, RoutedEventArgs e)
         {
+
             // load settings
-            WeatherApplicationClassLibrary.Settings settings = new WeatherApplicationClassLibrary.Settings();
             settings.readSettingsFile();
 
-            postCode.Text = settings.Postcode;
+            postCode.DataContext = settings;
+
+            if (settings.TempChoice.Equals("c"))
+            {
+                celciusRadioButton.IsChecked = true;
+            }
+            else
+            {
+                fahrenheitRadioButton.IsChecked = true;
+            }
+        }
+
+        private void updateSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (celciusRadioButton.IsChecked == true)
+            {
+
+                settings.TempChoice = "c";
+            }
+            else
+            {
+                settings.TempChoice = "f";
+            }
+
+            settings.Postcode = postCode.Text;
+
+            settings.writeSettingsFile();
+
+            //List<String> searchCriteria = new List<string>();
+            //searchCriteria.Add(settings.Postcode);
+            //settings.updateWOEID(searchCriteria);
+            loc.updateLocation(settings.WOEID);
+
+            day.updateDay(settings.WOEID);
+            day.Weather.updateForecastList(settings.WOEID);
+
+            this.Close();
         }
     }
 }

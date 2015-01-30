@@ -66,5 +66,7 @@ F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\W
 F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.pdb
 F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\Error.baml
 F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\Error.g.cs
-F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplicationClassLibrary.dll
 F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplicationClassLibrary.pdb
+F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplicationClassLibrary.dll
+F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\Microsoft.Maps.MapControl.WPF.dll
+F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\Microsoft.Maps.MapControl.WPF.xml

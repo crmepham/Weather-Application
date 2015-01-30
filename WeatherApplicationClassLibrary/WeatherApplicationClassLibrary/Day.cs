@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace WeatherApplicationClassLibrary 
 {
-    public class Day
+    public class Day : INotifyPropertyChanged
     {
         private String name;
         private String date;
@@ -24,17 +24,22 @@ namespace WeatherApplicationClassLibrary
         public String LastBuildDate
         {
             get { return lastBuildDate; }
+            set { lastBuildDate = value; OnPropertyChanged("LastBuildDate"); }
         }
 
         public String Name
         {
             get { return name; }
-            set { name = value; }
+            set 
+            { 
+                name = value;
+                OnPropertyChanged("Name");
+            }
         }
         public String Date
         {
             get { return date; }
-            set { date = value; }
+            set { date = value; OnPropertyChanged("Date"); }
         }
         public Day(String woeid)
         {
@@ -45,6 +50,15 @@ namespace WeatherApplicationClassLibrary
         {
             weather = new Weather();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string Property)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(Property));
+        }
+
 
         public void updateDay(String woeid)
         {
@@ -62,24 +76,48 @@ namespace WeatherApplicationClassLibrary
             date = channel.SelectSingleNode("lastBuildDate", man).InnerText.Substring(5, 11);
             lastBuildDate = channel.SelectSingleNode("lastBuildDate", man).InnerText;
 
-            weather.Temperature = channel.SelectSingleNode("item").SelectSingleNode("yweather:condition", man).Attributes["temp"].Value + "\u00b0";
+            Settings settings = new Settings();
+            settings.readSettingsFile();
+            String tempChoice = settings.TempChoice;
+
             weather.Condition = channel.SelectSingleNode("item").SelectSingleNode("yweather:condition", man).Attributes["text"].Value;
-            weather.WindChill = channel.SelectSingleNode("yweather:wind", man).Attributes["chill"].Value + "\u00b0";
+            weather.WindChill = convertTemperature(tempChoice, channel.SelectSingleNode("yweather:wind", man).Attributes["chill"].Value) + "\u00b0";
             weather.WindDirection = channel.SelectSingleNode("yweather:wind", man).Attributes["direction"].Value + "\u00b0";
             weather.WindSpeed = channel.SelectSingleNode("yweather:wind", man).Attributes["speed"].Value + "mph";
-            weather.Humidity = channel.SelectSingleNode("yweather:atmosphere", man).Attributes["humidity"].Value + "\u00b0";
+            weather.Humidity = convertTemperature(tempChoice, channel.SelectSingleNode("yweather:atmosphere", man).Attributes["humidity"].Value) + "\u00b0";
             weather.Sunrise = channel.SelectSingleNode("yweather:astronomy", man).Attributes["sunrise"].Value;
             weather.Sunset = channel.SelectSingleNode("yweather:astronomy", man).Attributes["sunset"].Value;
-
+            Weather.Temperature = convertTemperature(tempChoice, channel.SelectSingleNode("item").SelectSingleNode("yweather:condition", man).Attributes["temp"].Value) + "\u00b0";
             weather.updateForecastList(woeid);
 
 
+
+            
+
         }
 
-        public String todaysDate()
+        private String convertTemperature(String tempChoice, String temp)
         {
-            String result = name + " " + date;
-            return result;
+            String resultString = null;
+            if (tempChoice.Equals("c"))
+            {
+                // convert fahrenheit temperature to celcius
+                int temperature = Convert.ToInt32(temp);
+
+                // conversion formula
+                int result = (temperature - 32) * 5 / 9;
+
+                // return converted temperature as a string
+                resultString = result.ToString();
+
+            }
+            else
+            {
+                // no conversion required
+                resultString = temp;
+            }
+
+            return resultString;
         }
     }
 }

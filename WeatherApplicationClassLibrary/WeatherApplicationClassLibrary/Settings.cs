@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Xml;
+using System.ComponentModel;
 
-namespace WeatherApplicationClassLibrary
+namespace WeatherApplicationClassLibrary 
 {
     /// <summary>
     /// <para>The Settings class is used to load and write settings data. It is written in a dynamic way so that any number of settings can be
     /// added or removed to the settings.txt file.</para>
     /// </summary>
-    public class Settings
+    public class Settings : INotifyPropertyChanged
     {
         // class variables
         private String line;
@@ -28,13 +29,31 @@ namespace WeatherApplicationClassLibrary
         public String Postcode
         {
             get { return settings[0]; }
-            set { settings[0] = value; }
+            set 
+            { 
+                settings[0] = value;
+                OnPropertyChanged("Postcode");
+            }
+        }
+
+        public String TempChoice
+        {
+            get { return settings[1]; }
+            set { settings[1] = value; }
         }
 
         public Settings()
         {
             file = "settings.txt";
             devKey = "dj0yJmk9TmFteGt6WDFTWFBkJmQ9WVdrOVpIaG1iVGhrTTJNbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1kZA";
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string Property)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(Postcode));
         }
 
         public void updateWOEID(List<String> searchCriteria)
@@ -44,11 +63,18 @@ namespace WeatherApplicationClassLibrary
             XmlDocument woeidData = new XmlDocument();
             woeidData.Load(query);
 
-            XmlNodeList node = woeidData.GetElementsByTagName("woeid");
+            try
+            {
+                XmlNodeList node = woeidData.GetElementsByTagName("woeid");
 
-            woeid = node[0].InnerText;
+                woeid = node[0].InnerText;
+            }
+            catch (Exception e)
+            {
+                woeid = "";
+                Console.Write(e.Message);
+            }
         }
-
 
         private String buildWOEIDQuery(List<String> searchCriteria)
         {
@@ -89,37 +115,34 @@ namespace WeatherApplicationClassLibrary
 
                         // split the string into an array of settings by any comas found
                         settings = line.Split(',');
-                       
+
+                    }
+
+                    if(settings[0].Equals(""))
+                    {
+                        settings[0] = "ip333rl";
                     }
                 }
             }
             catch (IOException e) { Console.Write(e); }
+            
         }
 
         /// <summary>
         /// The writeSettingsFile method if used to write a dynamic number of settings to the settings.txt file.
         /// </summary>
         /// <param name="settings">settings is a String array used to store the various settings that will be written to the setting.txt file.</param>
-        public void writeSettingsFile(String[] settings)
+        public void writeSettingsFile()
         {
             try
             {
                 using(StreamWriter sWriter = new StreamWriter(file))
                 {
                     line = "";
-                    // dynamically build the String of text that will be saved to the file. It is written in a dynamic way incase more settings are added in future
-                    for (int i = 0; i < settings.Length; i++ )
-                    {
-                        // don't add a coma after the last setting or any empty element will exist in the string array when retrieveing the settings
-                        if (i != settings.Length)
-                        {
-                            line += settings[i] + ",";
-                        }
-                        else
-                        {
-                            line += settings[i];
-                        }
-                    }
+
+                    line += string.Join(",", settings);
+
+
 
                     // write the string of settings to the settings.txt file
                     sWriter.WriteLine(line);

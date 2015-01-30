@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace WeatherApplicationClassLibrary
 {
-    public class Forecast : Weather
+    public class Forecast : INotifyPropertyChanged
     {
         private String day;
 
         public String Day
         {
             get { return day; }
-            set { day = value; }
+            set { day = value; OnPropertyChanged("Day"); }
         }
         private String date;
 
         public String Date
         {
             get { return date; }
-            set { date = value; }
+            set { date = value; OnPropertyChanged("Date"); }
         }
 
         private String hiLow;
@@ -27,7 +28,7 @@ namespace WeatherApplicationClassLibrary
         public String HiLow
         {
             get { return hiLow; }
-            set { hiLow = value; }
+            set { hiLow = value; OnPropertyChanged("HiLow"); }
         }
 
         private String condition;
@@ -35,12 +36,15 @@ namespace WeatherApplicationClassLibrary
         public String ForecastCondition
         {
             get { return condition; }
-            set { condition = value; }
+            set { condition = value; OnPropertyChanged("ForecastCondition"); }
         }
 
-        public void updateForecast()
-        {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        private void OnPropertyChanged(string Property)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(Property));
         }
     }
 
