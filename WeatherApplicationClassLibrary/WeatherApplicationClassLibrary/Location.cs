@@ -10,7 +10,7 @@ namespace WeatherApplicationClassLibrary
 {
     public class Location : INotifyPropertyChanged
     {
-        #region
+        #region class fields
         private String town;
         private String postcode;
         private String county;
@@ -54,6 +54,15 @@ namespace WeatherApplicationClassLibrary
             set { longitude = value; OnPropertyChanged("Longitude"); }
         }
         #endregion
+
+
+        public Location()
+        {
+            Town = "";
+            County = "";
+            Latitude = "";
+            Longitude = "";
+        }
 
         // notify interface of changes to property values
         private void OnPropertyChanged(string Property)
@@ -101,7 +110,7 @@ namespace WeatherApplicationClassLibrary
         /// <returns>Value of XML node or an empty string</returns>
         private String checkIfNull(String arg)
         {
-            String result = "";
+            String result = " ";
 
             if (arg == null)
             {

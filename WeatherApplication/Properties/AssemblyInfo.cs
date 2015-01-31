@@ -7,13 +7,13 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WeatherApplication")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Weather Application")]
+[assembly: AssemblyDescription("Search by text or map to get the weather information for your desired location")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WeatherApplication")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("")]
+[assembly: AssemblyTrademark("Chris Mepham")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -53,3 +53,4 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguageAttribute("en-GB")]

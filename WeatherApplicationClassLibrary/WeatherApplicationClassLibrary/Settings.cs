@@ -81,8 +81,9 @@ namespace WeatherApplicationClassLibrary
             }
             catch (Exception e)
             {
-                // if no woeid is present assing an empty string to woeid
+                // if no woeid is present assign an empty string to woeid
                 woeid = "";
+
                 Console.Write(e.Message);
             }
            

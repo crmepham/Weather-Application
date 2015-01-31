@@ -123,7 +123,7 @@ namespace WeatherApplication
             // check if that there is at least one search term 
             if (!isValidSearchCriteria())
             {
-                displayError("Error: Please provide one or more search criteria.");
+                displayError("Please provide one or more search criteria.");
                 return;
             }
 
@@ -133,7 +133,7 @@ namespace WeatherApplication
             // check if a woeid was found
             if (set.WOEID.Length <= 0)
             {
-                displayError("Error: Could not retrieve WOEID, please try again.");
+                displayError("Could not retrieve WOEID, please try again.");
                 return;
             }
 
@@ -201,6 +201,35 @@ namespace WeatherApplication
 
             // get new woeid
             set.updateWOEID(searchCriteria);
+
+            // if no woeid could be found reset it to default
+            if (set.WOEID.Equals(""))
+            {
+                // clear search term list
+                searchCriteria.Clear();
+
+                // read settings file to get default postcode 
+                set.readSettingsFile();
+
+                // add postcode to search term list
+                searchCriteria.Add(set.Postcode);
+
+                // get default location
+                set.updateWOEID(searchCriteria);
+
+                // update location
+                loc.updateLocation(set.WOEID);
+
+                // update day
+                day.updateDay(set.WOEID);
+
+                // update map location
+                Microsoft.Maps.MapControl.WPF.Location l = new Microsoft.Maps.MapControl.WPF.Location(Convert.ToDouble(loc.Latitude), Convert.ToDouble(loc.Longitude));
+                Map.SetView(l, 11);
+
+                displayError("Could not retrieve location information. Returned to default location.");
+                return;
+            }
 
             // update location
             loc.updateLocation(set.WOEID);

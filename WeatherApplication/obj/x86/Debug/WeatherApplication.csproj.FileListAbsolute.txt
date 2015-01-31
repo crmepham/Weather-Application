@@ -70,3 +70,7 @@ F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\Weath
 F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplicationClassLibrary.dll
 F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\Microsoft.Maps.MapControl.WPF.dll
 F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\Microsoft.Maps.MapControl.WPF.xml
+F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplication.exe.manifest
+F:\uni\System Development\Weather-Application\WeatherApplication\bin\Debug\WeatherApplication.application
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.exe.manifest
+F:\uni\System Development\Weather-Application\WeatherApplication\obj\x86\Debug\WeatherApplication.application
