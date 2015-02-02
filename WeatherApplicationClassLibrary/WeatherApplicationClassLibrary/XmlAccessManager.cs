@@ -9,7 +9,7 @@ namespace WeatherApplicationClassLibrary
     /// <summary>
     /// <para>Encapsulates all XML document controls.</para>
     /// </summary>
-    public class XmlAccessManager
+    public class XmlAccessManager : IXmlWeatherDocument
     {
         #region class variables
         private String query;
@@ -30,7 +30,6 @@ namespace WeatherApplicationClassLibrary
         {
             get { return channel; }
         }
-        
 
         public XmlNamespaceManager NamespaceManager
         {

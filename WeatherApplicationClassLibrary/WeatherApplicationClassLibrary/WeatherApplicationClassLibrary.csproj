@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Day.cs" />
     <Compile Include="Forecast.cs" />
+    <Compile Include="IXmlWeatherDocument.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
