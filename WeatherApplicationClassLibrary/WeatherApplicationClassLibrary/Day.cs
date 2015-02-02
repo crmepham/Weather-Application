@@ -13,7 +13,7 @@ namespace WeatherApplicationClassLibrary
     /// </summary>
     public class Day : INotifyPropertyChanged
     {
-        #region Class variable
+        #region Class variables
         private String name;
         private String date;
         private String lastBuildDate;
@@ -46,10 +46,6 @@ namespace WeatherApplicationClassLibrary
             get { return date; }
             set { date = value; OnPropertyChanged("Date"); }
         }
-        public Day(String woeid)
-        {
-            updateDay(woeid);
-        }
         #endregion
 
         public Day()
@@ -68,22 +64,11 @@ namespace WeatherApplicationClassLibrary
         /// Will update the Day properties. Run this when searching for a new locations weather data.
         /// </summary>
         /// <param name="woeid">The id of the location.</param>
-        public void updateDay(String woeid)
+        public void updateDay(XmlAccessManager xm)
         {
-            // build the search uri query
-            String query = String.Format("http://weather.yahooapis.com/forecastrss?w={0}", woeid);
 
-            // Instantiate a new XML document retrieved from the uri
-            XmlDocument weatherData = new XmlDocument();
-            weatherData.Load(query);
-
-            // traverse the node list in the XML document to where the relevant data is located
-            XmlNode channel = weatherData.SelectSingleNode("rss").SelectSingleNode("channel");
-
-            // establish the two namespaced to access the nodes that have prefixes
-            XmlNamespaceManager man = new XmlNamespaceManager(weatherData.NameTable);
-            man.AddNamespace("lastBuildDate", "http://xml.weather.yahoo.com/ns/rss/1.0");
-            man.AddNamespace("yweather", "http://xml.weather.yahoo.com/ns/rss/1.0");
+            xm.addNameSpace("lastBuildDate", "http://xml.weather.yahoo.com/ns/rss/1.0");
+            xm.addNameSpace("yweather", "http://xml.weather.yahoo.com/ns/rss/1.0");
 
             // get the users choice of temperature (celcius/Fahrenheit)
             Settings settings = new Settings();
@@ -91,22 +76,22 @@ namespace WeatherApplicationClassLibrary
             String tempChoice = settings.TempChoice;
 
             // assign the Day's attribute the relevant node content
-            name = channel.SelectSingleNode("lastBuildDate", man).InnerText.Substring(0,3);
-            date = channel.SelectSingleNode("lastBuildDate", man).InnerText.Substring(5, 11);
-            lastBuildDate = channel.SelectSingleNode("lastBuildDate", man).InnerText;
+            name = xm.Channel.SelectSingleNode("lastBuildDate", xm.NamespaceManager).InnerText.Substring(0,3);
+            date = xm.Channel.SelectSingleNode("lastBuildDate", xm.NamespaceManager).InnerText.Substring(5, 11);
+            lastBuildDate = xm.Channel.SelectSingleNode("lastBuildDate", xm.NamespaceManager).InnerText;
 
             // the days weather attributes
-            weather.Condition = channel.SelectSingleNode("item").SelectSingleNode("yweather:condition", man).Attributes["text"].Value;
-            weather.WindChill = convertTemperature(tempChoice, channel.SelectSingleNode("yweather:wind", man).Attributes["chill"].Value) + "\u00b0";
-            weather.WindDirection = channel.SelectSingleNode("yweather:wind", man).Attributes["direction"].Value + "\u00b0";
-            weather.WindSpeed = channel.SelectSingleNode("yweather:wind", man).Attributes["speed"].Value + "mph";
-            weather.Humidity = convertTemperature(tempChoice, channel.SelectSingleNode("yweather:atmosphere", man).Attributes["humidity"].Value) + "\u00b0";
-            weather.Sunrise = channel.SelectSingleNode("yweather:astronomy", man).Attributes["sunrise"].Value;
-            weather.Sunset = channel.SelectSingleNode("yweather:astronomy", man).Attributes["sunset"].Value;
-            Weather.Temperature = convertTemperature(tempChoice, channel.SelectSingleNode("item").SelectSingleNode("yweather:condition", man).Attributes["temp"].Value) + "\u00b0";
+            weather.Condition = xm.Channel.SelectSingleNode("item").SelectSingleNode("yweather:condition", xm.NamespaceManager).Attributes["text"].Value;
+            weather.WindChill = convertTemperature(tempChoice, xm.Channel.SelectSingleNode("yweather:wind", xm.NamespaceManager).Attributes["chill"].Value) + "\u00b0";
+            weather.WindDirection = xm.Channel.SelectSingleNode("yweather:wind", xm.NamespaceManager).Attributes["direction"].Value + "\u00b0";
+            weather.WindSpeed = xm.Channel.SelectSingleNode("yweather:wind", xm.NamespaceManager).Attributes["speed"].Value + "mph";
+            weather.Humidity = convertTemperature(tempChoice, xm.Channel.SelectSingleNode("yweather:atmosphere", xm.NamespaceManager).Attributes["humidity"].Value) + "\u00b0";
+            weather.Sunrise = xm.Channel.SelectSingleNode("yweather:astronomy", xm.NamespaceManager).Attributes["sunrise"].Value;
+            weather.Sunset = xm.Channel.SelectSingleNode("yweather:astronomy", xm.NamespaceManager).Attributes["sunset"].Value;
+            Weather.Temperature = convertTemperature(tempChoice, xm.Channel.SelectSingleNode("item").SelectSingleNode("yweather:condition", xm.NamespaceManager).Attributes["temp"].Value) + "\u00b0";
             
             // the forecast for the next 5 days is contained in the weather object
-            weather.updateForecastList(woeid);
+            weather.updateForecastList(xm);
         }
 
         /// <summary>

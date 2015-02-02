@@ -106,24 +106,11 @@ namespace WeatherApplicationClassLibrary
         /// Used to update the list of forecast objects containing basic weather data for the next 5 days
         /// </summary>
         /// <param name="woeid">The id of the location</param>
-        public void updateForecastList(String woeid)
+        public void updateForecastList(XmlAccessManager xm)
         {
-            // build the search uri query
-            String query = String.Format("http://weather.yahooapis.com/forecastrss?w={0}", woeid);
 
-            // Instantiate a new XML document retrieved from the uri
-            XmlDocument weatherData = new XmlDocument();
-            weatherData.Load(query);
-
-            // traverse the node list in the XML document to where the relevant data is located
-            XmlNode channel = weatherData.SelectSingleNode("rss").SelectSingleNode("channel").SelectSingleNode("item");
-
-            // establish the namespace to access the nodes that have a prefix
-            XmlNamespaceManager man = new XmlNamespaceManager(weatherData.NameTable);
-            man.AddNamespace("yweather", "http://xml.weather.yahoo.com/ns/rss/1.0");
-
-            // instantiate a nodelist based on the 5 nodes with the same prefix
-            XmlNodeList nodeList =  channel.SelectNodes("yweather:forecast", man);
+            // update xm nodelist
+            xm.updateXmlNodeList("yweather:forecast");
 
             // get the users temperature choice (celcius/fahrenheit)
             Settings settings = new Settings();
@@ -132,7 +119,7 @@ namespace WeatherApplicationClassLibrary
             int i = 0;
 
             // iterate through each of the nodes in the node list
-            foreach(XmlNode forecastNode in nodeList)
+            foreach(XmlNode forecastNode in xm.XmlNodeList)
             {
                 // assign the nodes attribute data to the equivalant forecast object fields
                 ForecastList.ElementAt(i).Day = (i == 0) ? "Today" : forecastNode.Attributes["day"].Value;

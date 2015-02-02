@@ -23,11 +23,13 @@ namespace WeatherApplication
         private Location loc;
         private WeatherApplicationClassLibrary.Settings settings;
         private Day day;
+        private XmlAccessManager xm;
 
-        public Settings(Location locIn, WeatherApplicationClassLibrary.Settings settingsIn, Day dayIn)
+        public Settings(XmlAccessManager xmlAccessManagerIn, Location locIn, WeatherApplicationClassLibrary.Settings settingsIn, Day dayIn)
         {
             InitializeComponent();
 
+            xm = xmlAccessManagerIn;
             loc = locIn;
             settings = settingsIn;
             day = dayIn;
@@ -71,10 +73,10 @@ namespace WeatherApplication
             //List<String> searchCriteria = new List<string>();
             //searchCriteria.Add(settings.Postcode);
             //settings.updateWOEID(searchCriteria);
-            loc.updateLocation(settings.WOEID);
+            loc.updateLocation(xm);
 
-            day.updateDay(settings.WOEID);
-            day.Weather.updateForecastList(settings.WOEID);
+            day.updateDay(xm);
+            //day.Weather.updateForecastList(settings.WOEID);
 
             this.Close();
         }

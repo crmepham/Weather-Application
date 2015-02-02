@@ -62,19 +62,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>dKK08EY1gkySltvIvrK8iZdm/Yw=</dsig:DigestValue>
+        <dsig:DigestValue>BnUct5hCA+kQeom0pBd6Qn3O4ag=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WeatherApplicationClassLibrary.dll" size="15872">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WeatherApplicationClassLibrary.dll" size="16384">
       <assemblyIdentity name="WeatherApplicationClassLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>vs46rspV09Qa6DC/J7n1Q5nHJEo=</dsig:DigestValue>
+        <dsig:DigestValue>Gayyo+K9S7JQkHkTCZW/LZzeqVo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

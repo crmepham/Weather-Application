@@ -75,31 +75,16 @@ namespace WeatherApplicationClassLibrary
         /// <para>Will update the Day properties. Run this when searching for a new locations weather data.</para>
         /// </summary>
         /// <param name="woeid">The id of the location</param>
-        public void updateLocation(String woeid)
+        public void updateLocation(XmlAccessManager xm)
         {
-            // clear existing location data incase not all data is present to replace existing data
-            resetLocationFields();
-
-            // build the search uri query
-            String query = String.Format("http://weather.yahooapis.com/forecastrss?w={0}", woeid);
-
-            // Instantiate a new XML document retrieved from the uri
-            XmlDocument weatherData = new XmlDocument();
-            weatherData.Load(query);
-
-            // traverse the node list in the XML document to where the relevant data is located
-            XmlNode channel = weatherData.SelectSingleNode("rss").SelectSingleNode("channel");
-            XmlNamespaceManager man = new XmlNamespaceManager(weatherData.NameTable);
-
-            // establish the two namespaced to access the nodes that have prefixes
-            man.AddNamespace("yweather", "http://xml.weather.yahoo.com/ns/rss/1.0");
-            man.AddNamespace("geo", "http://www.w3.org/2003/01/geo/wgs84_pos#");
+            xm.addNameSpace("yweather", "http://xml.weather.yahoo.com/ns/rss/1.0");
+            xm.addNameSpace("geo", "http://www.w3.org/2003/01/geo/wgs84_pos#");
 
             // assign the Locations attributes the relevant node content
-            Town = checkIfNull(channel.SelectSingleNode("yweather:location", man).Attributes["city"].Value);
-            County = checkIfNull(channel.SelectSingleNode("yweather:location", man).Attributes["region"].Value);
-            Latitude = checkIfNull(channel.SelectSingleNode("item").SelectSingleNode("geo:lat", man).InnerText);
-            Longitude = checkIfNull(channel.SelectSingleNode("item").SelectSingleNode("geo:long", man).InnerText);
+            Town = checkIfNull(xm.Channel.SelectSingleNode("yweather:location", xm.NamespaceManager).Attributes["city"].Value);
+            County = checkIfNull(xm.Channel.SelectSingleNode("yweather:location", xm.NamespaceManager).Attributes["region"].Value);
+            Latitude = checkIfNull(xm.Channel.SelectSingleNode("item").SelectSingleNode("geo:lat", xm.NamespaceManager).InnerText);
+            Longitude = checkIfNull(xm.Channel.SelectSingleNode("item").SelectSingleNode("geo:long", xm.NamespaceManager).InnerText);
             
         }
 

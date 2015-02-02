@@ -26,6 +26,7 @@ namespace WeatherApplication
         Day day;
         Location loc;
         WeatherApplicationClassLibrary.Settings set;
+        XmlAccessManager xm;
 
         #endregion
 
@@ -52,13 +53,16 @@ namespace WeatherApplication
             // get woeid using saved postcode
             set.updateWOEID(searchCriteria);
 
+            // instantiate the Xml access object to be used for retrieving weather data
+            xm = new XmlAccessManager(set.WOEID);
+
             // load todays info from saved postcode
             day = new Day();
-            day.updateDay(set.WOEID);
+            day.updateDay(xm);
 
             // load location info from settings
             loc = new Location();
-            loc.updateLocation(set.WOEID);
+            loc.updateLocation(xm);
 
             // set the data context for the various labels to display the correct data
             dayInfo.DataContext = day.Weather;
@@ -95,7 +99,7 @@ namespace WeatherApplication
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
         {
-            Settings settingsWindow = new Settings(loc, set, day);
+            Settings settingsWindow = new Settings(xm, loc, set, day);
             settingsWindow.Show();
         }
 
@@ -137,11 +141,14 @@ namespace WeatherApplication
                 return;
             }
 
+            // update xm
+            xm.updateXmlDocument(set.WOEID);
+
             // update location
-            loc.updateLocation(set.WOEID);
+            loc.updateLocation(xm);
 
             // update day
-            day.updateDay(set.WOEID);
+            day.updateDay(xm);
 
             // update map location
             Microsoft.Maps.MapControl.WPF.Location l = new Microsoft.Maps.MapControl.WPF.Location(Convert.ToDouble(loc.Latitude), Convert.ToDouble(loc.Longitude));
@@ -217,11 +224,14 @@ namespace WeatherApplication
                 // get default location
                 set.updateWOEID(searchCriteria);
 
+                // update xm
+                xm.updateXmlDocument(set.WOEID);
+
                 // update location
-                loc.updateLocation(set.WOEID);
+                loc.updateLocation(xm);
 
                 // update day
-                day.updateDay(set.WOEID);
+                day.updateDay(xm);
 
                 // update map location
                 Microsoft.Maps.MapControl.WPF.Location l = new Microsoft.Maps.MapControl.WPF.Location(Convert.ToDouble(loc.Latitude), Convert.ToDouble(loc.Longitude));
@@ -231,11 +241,14 @@ namespace WeatherApplication
                 return;
             }
 
+            // update xm
+            xm.updateXmlDocument(set.WOEID);
+
             // update location
-            loc.updateLocation(set.WOEID);
+            loc.updateLocation(xm);
 
             // update day
-            day.updateDay(set.WOEID);
+            day.updateDay(xm);
 
         }
 
