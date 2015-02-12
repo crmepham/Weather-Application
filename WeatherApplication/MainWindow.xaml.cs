@@ -40,9 +40,14 @@ namespace WeatherApplication
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
+            
+
             // attempt to load data from .txt and .xml files
             try
             {
+
+            
 
             // read settings from file
             set.readSettingsFile();
@@ -52,6 +57,20 @@ namespace WeatherApplication
 
             // get woeid using saved postcode
             set.updateWOEID(searchCriteria);
+
+            // check if a woeid was found
+            if (set.WOEID.Length <= 0)
+            {
+                // set a new valid postcode and save it to settings file
+                set.Postcode = "ip333rl";
+                set.writeSettingsFile();
+
+                // use this default woeid to load program
+                set.WOEID = "14714";
+
+                // notify user of invalid postcode
+                displayError("Invalid saved postcode, reverted to system default location. Settings updated.\nPlease set a valid postcode in settings.");
+            }
 
             // instantiate the Xml access object to be used for retrieving weather data
             xm = new XmlAccessManager(set.WOEID);
@@ -64,15 +83,22 @@ namespace WeatherApplication
             loc = new Location();
             loc.updateLocation(xm);
 
+            // load reusable forecast UI component
+            UserControlLibrary.ForecastControl fc = new UserControlLibrary.ForecastControl();
+            rightStackPanel.Children.Add(fc);
+
             // set the data context for the various labels to display the correct data
             dayInfo.DataContext = day.Weather;
             lastBuildDateLabel.DataContext = day;
             townLabel.DataContext = loc;
-            Forecast1.DataContext = day.Weather.ForecastList[0];
-            Forecast2.DataContext = day.Weather.ForecastList[1];
-            Forecast3.DataContext = day.Weather.ForecastList[2];
-            Forecast4.DataContext = day.Weather.ForecastList[3];
-            Forecast5.DataContext = day.Weather.ForecastList[4];
+
+            fc.Forecast1DC = day.Weather.ForecastList[0];
+            fc.Forecast2DC = day.Weather.ForecastList[1];
+            fc.Forecast3DC = day.Weather.ForecastList[2];
+            fc.Forecast4DC = day.Weather.ForecastList[3];
+            fc.Forecast5DC = day.Weather.ForecastList[4];
+
+            
 
             // set default location of  map
             Microsoft.Maps.MapControl.WPF.Location l = new Microsoft.Maps.MapControl.WPF.Location(Convert.ToDouble(loc.Latitude), Convert.ToDouble(loc.Longitude));
@@ -91,25 +117,25 @@ namespace WeatherApplication
         }
 
         #region The various menu options
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void closeProgramMenuItem_Click(object sender, RoutedEventArgs e)
         {
             // close program
             Environment.Exit(0);
         }
 
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        private void settingsMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Settings settingsWindow = new Settings(xm, loc, set, day);
             settingsWindow.Show();
         }
 
-        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        private void guideMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Guide guideWindow = new Guide();
             guideWindow.Show();
         }
 
-        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        private void aboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
             About aboutWindow = new About();
             aboutWindow.Show();
@@ -191,12 +217,6 @@ namespace WeatherApplication
             return isValid;
         }
 
-        private void slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            // map the Map zoom level to the slider value
-            Map.ZoomLevel = e.NewValue;
-        }
-
         private void getWeatherButton_Click(object sender, RoutedEventArgs e)
         {
             // clear search list
@@ -250,6 +270,12 @@ namespace WeatherApplication
             // update day
             day.updateDay(xm);
 
+        }
+
+        private void slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            // map the Map zoom level to the slider value
+            Map.ZoomLevel = e.NewValue;
         }
 
         private void Map_MouseWheel(object sender, MouseWheelEventArgs e)

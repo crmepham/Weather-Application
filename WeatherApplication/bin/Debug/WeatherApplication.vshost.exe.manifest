@@ -55,26 +55,38 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WeatherApplication.exe" size="100352">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="UserControlLibrary.dll" size="13312">
+      <assemblyIdentity name="UserControlLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>hIvN3zvycHXS6v7LTjx9ojozrNw=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WeatherApplication.exe" size="102912">
       <assemblyIdentity name="WeatherApplication" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>BnUct5hCA+kQeom0pBd6Qn3O4ag=</dsig:DigestValue>
+        <dsig:DigestValue>A8vRynJshelhXk6vmvCv7KfiY1o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WeatherApplicationClassLibrary.dll" size="16384">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WeatherApplicationClassLibrary.dll" size="16896">
       <assemblyIdentity name="WeatherApplicationClassLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Gayyo+K9S7JQkHkTCZW/LZzeqVo=</dsig:DigestValue>
+        <dsig:DigestValue>SdCxjcoEVamCx4oUlJ8waI6fLv0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

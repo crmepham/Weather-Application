@@ -52,6 +52,4 @@ namespace WeatherApplicationClassLibrary
                 PropertyChanged(this, new PropertyChangedEventArgs(Property));
         }
     }
-
-    
 }

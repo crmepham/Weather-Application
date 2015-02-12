@@ -9,7 +9,8 @@ using System.ComponentModel;
 namespace WeatherApplicationClassLibrary 
 {
     /// <summary>
-    /// <para>Represents a single day and will store information about the day including, the weather for the day and for the next four days following</para>
+    /// <para>Represents a single day and will store information about the day including, 
+    /// the weather for the day and for the next four days following</para>
     /// </summary>
     public class Day : INotifyPropertyChanged
     {

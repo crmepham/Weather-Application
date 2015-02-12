@@ -9,7 +9,8 @@ using System.ComponentModel;
 namespace WeatherApplicationClassLibrary 
 {
     /// <summary>
-    /// <para>The Settings class is used to load and write settings data. It is written in a dynamic way so that any number of settings can be
+    /// <para>The Settings class is used to load and write settings data. 
+    /// It is written in a dynamic way so that any number of settings can be
     /// added or removed to the settings.txt file.</para>
     /// </summary>
     public class Settings : INotifyPropertyChanged
@@ -27,6 +28,7 @@ namespace WeatherApplicationClassLibrary
         public String WOEID 
         {
             get { return woeid; }
+            set { woeid = value; }
         }
 
         public String Postcode
@@ -126,7 +128,8 @@ namespace WeatherApplicationClassLibrary
         /// <summary>
         /// This method is used to retrieve the settings data from the settings.txt file.
         /// </summary>
-        /// <param name="sr">StreamReader is used to read in the settings.txt file and store the data the line variable.</param>
+        /// <param name="sr">StreamReader is used to read in the settings.txt 
+        /// file and store the data the line variable.</param>
         public void readSettingsFile()
         {
             try
@@ -158,7 +161,8 @@ namespace WeatherApplicationClassLibrary
         /// <summary>
         /// The writeSettingsFile method if used to write a dynamic number of settings to the settings.txt file.
         /// </summary>
-        /// <param name="settings">settings is a String array used to store the various settings that will be written to the setting.txt file.</param>
+        /// <param name="settings">settings is a String array used to store the various 
+        /// settings that will be written to the setting.txt file.</param>
         public void writeSettingsFile()
         {
             try

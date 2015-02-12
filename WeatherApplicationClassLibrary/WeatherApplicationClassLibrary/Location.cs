@@ -8,6 +8,9 @@ using System.ComponentModel;
 
 namespace WeatherApplicationClassLibrary
 {
+    /// <summary>
+    /// <para>Represents a single location</para>
+    /// </summary>
     public class Location : INotifyPropertyChanged
     {
         #region class fields
